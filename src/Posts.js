@@ -37,7 +37,7 @@ function Post (props){
             </div>
 
             <div class="conteudo">
-              <img onDoubleClick={()=>{setHeart("red")}} src={props.img}  data-test="post-image" />
+              <img onDoubleClick={()=>{setHeart(false)}} src={props.img}  data-test="post-image" />
             </div>
 
             <div class="fundo">
