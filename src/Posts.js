@@ -25,7 +25,7 @@ function Post (props){
 
 
     return (
-          <div class="post">
+          <div class="post" data-test="post">
             <div class="topo">
               <div class="usuario">
                 <img src={props.imagem} />
@@ -37,18 +37,18 @@ function Post (props){
             </div>
 
             <div class="conteudo">
-              <img onDoubleClick={()=>{setHeart("red")}} src={props.img} />
+              <img onDoubleClick={()=>{setHeart("red")}} src={props.img}  data-test="post-image" />
             </div>
 
             <div class="fundo">
               <div class="acoes">
                 <div>
-                  <ion-icon onClick={()=>{setHeart(!heart)}} class={(heart===true) ? "normal" : "red"} name={(heart===true) ? "heart-outline" : "heart"}></ion-icon>
+                  <ion-icon onClick={()=>{setHeart(!heart)}} class={(heart===true) ? "normal" : "red"} name={(heart===true) ? "heart-outline" : "heart"} data-test="like-post"></ion-icon>
                   <ion-icon name="chatbubble-outline"></ion-icon>
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon onClick={() => {setBookmark(!bookmark) }} name={(bookmark === true) ? "bookmark-outline" : "bookmark"}></ion-icon>
+                  <ion-icon onClick={() => {setBookmark(!bookmark) }} name={(bookmark === true) ? "bookmark-outline" : "bookmark"} data-test="save-post"></ion-icon>
                 </div>
               </div>
 
