@@ -1,22 +1,35 @@
-const postCont =[
-  {imagem:"assets/img/meowed.svg", nome:"meowd", img:"assets/img/gato-telefone.svg", imglike:"assets/img/respondeai.svg", nomelike:"respondeai", numlike:"outras 101.523 pessoas"},
-  {imagem:"assets/img/barked.svg", nome:"barked", img:"assets/img/dog.svg", imglike:"assets/img/adorable_animals.svg", nomelike:"adorable_animals", numlike:"outras 99.159 pessoas"}
-]
-
-
-
+import React from 'react';
 
 export default function Posts (){
 
-    return (
-        <div class="posts">
+const postCont =[
+  {imagem:"assets/img/nate.jpeg", nome:"nathan_drake", img:"assets/img/natebro.jpeg", imglike:"assets/img/jin.jpeg", nomelike:"Sakai_jin", numlike:101.523},
+  {imagem:"assets/img/kratos.jpeg", nome:"Kratos.god", img:"assets/img/paiefilho.jpeg", imglike:"assets/img/sam.jpeg", nomelike:"Sam.pontes", numlike:99.565},
+  {imagem:"assets/img/jin.jpeg", nome:"Sakai_jin", img:"assets/img/jinfoto.jpeg", imglike:"assets/img/moira.jpeg", nomelike:"Moira", numlike:110.842}
+]
+  return (
+    <div class="posts">
+      {postCont.map((item)=> (
+    <Post imagem={item.imagem} nome={item.nome} img={item.img} imglike={item.imglike} nomelike={item.nomelike} numlike={item.numlike}/>
+    ))}
+      </div>
+  )
 
-        {postCont.map((item)=> ( 
+}
+
+
+
+function Post (props){
+  let [heart, setHeart] = React.useState(true)
+  let [bookmark, setBookmark] = React.useState(true)
+
+
+    return (
           <div class="post">
             <div class="topo">
               <div class="usuario">
-                <img src={item.imagem} />
-                {item.nome}
+                <img src={props.imagem} />
+                {props.nome}
               </div>
               <div class="acoes">
                 <ion-icon name="ellipsis-horizontal"></ion-icon>
@@ -24,31 +37,30 @@ export default function Posts (){
             </div>
 
             <div class="conteudo">
-              <img src={item.img} />
+              <img onDoubleClick={()=>{setHeart("red")}} src={props.img} />
             </div>
 
             <div class="fundo">
               <div class="acoes">
                 <div>
-                  <ion-icon name="heart-outline"></ion-icon>
+                  <ion-icon onClick={()=>{setHeart(!heart)}} class={(heart===true) ? "normal" : "red"} name={(heart===true) ? "heart-outline" : "heart"}></ion-icon>
                   <ion-icon name="chatbubble-outline"></ion-icon>
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon name="bookmark-outline"></ion-icon>
+                  <ion-icon onClick={() => {setBookmark(!bookmark) }} name={(bookmark === true) ? "bookmark-outline" : "bookmark"}></ion-icon>
                 </div>
               </div>
 
               <div class="curtidas">
-                <img src={item.imglike} />
+                <img src={props.imglike} />
                 <div class="texto">
-                  Curtido por <strong>{item.nomelike}</strong> e <strong>{item.numlike}</strong>
+                  Curtido por <strong>{props.nomelike}</strong> e <strong>outras {(heart===true) ? props.numlike: props.numlike +0.001 } pessoas</strong>
                 </div>
               </div>
             </div>
           </div>
-          ))}
+         
 
-        </div>
     )
 }
