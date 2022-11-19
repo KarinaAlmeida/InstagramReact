@@ -54,7 +54,7 @@ function Post (props){
 
               <div class="curtidas">
                 <img src={props.imglike} />
-                <div class="texto">
+                <div class="texto" data-test="likes-number">
                   Curtido por <strong>{props.nomelike}</strong> e <strong>outras {(heart===true) ? props.numlike: props.numlike +0.001 } pessoas</strong>
                 </div>
               </div>
